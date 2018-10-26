@@ -313,9 +313,11 @@ class ToastContainer extends Component {
 
     this.setState(
       {
-        toast: toastOptions.updateId
+        toast: (toastOptions.updateId
           ? [...this.state.toast]
-          : [...this.state.toast, toastId]
+          : [...this.state.toast, toastId]).filter((x) => {
+            return x !== options.staleToastId;
+          })
       },
       this.dispatchChange
     );
